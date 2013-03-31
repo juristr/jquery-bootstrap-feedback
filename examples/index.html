@@ -121,10 +121,41 @@
       <div class="jumbotron">
         <h1>User Feedback!</h1>
         <p class="lead">
-          User feedback is of enormous importance...<br/>
-          This plugin aims to provide an easy way to integrate it into your web application.
+          User feedback is of enormous importance.<br/>
+          This plugin aims at making it easy to integrate a nice-looking user feedback form onto your page.
         </p>
         <a class="btn btn-large btn-success" href="#">Get started</a>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span8 offset2">
+          <h2>Installation</h2>
+          <p>
+            Reference the stylesheet and JavaScript file.
+          </p>
+          <pre>
+&lt;head&gt;
+  ...
+  &lt;link rel="stylesheet" href="../jquery-bootstrap-feedback.css"&gt;  
+  ...
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+  &lt;script src="../jquery-bootstrap-feedback.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+          </pre>
+
+          <h2>Usage</h2>
+          <p>
+            The simplest way to use the plugin is to simply invoke
+          </p>
+          <pre>
+            $.feedback();
+          </pre>
+          <p>
+            This hooks it up with its default configuration, adding a button at the lower-right corner of the page and displaying the default text.
+          </p>
+        </div>
       </div>
 
       <hr>
@@ -144,46 +175,6 @@
       </div>
     </div>
 
-
-    <div id="supportbar">
-        <a href="#feedbackModal" class="btn btn-success btn-feedback" data-toggle="modal"><i class="icon-comment icon-white"></i> Get in Touch</a>      
-    </div>
-
-    <div id="feedbackModal" class="modal hide fade">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Get In Touch</h3>
-      </div>
-      <div class="modal-body">
-        <p>Please submit us any kind of feedback you like. It is really valuable for use for improving our service.</p>
-        <form action="/email/support" method="post">
-          <div class="row-fluid">
-            <input type="text" name="name" class="span6" placeholder="Your name">
-            <input type="text" name="email" class="span6" placeholder="Your email">
-          </div>
-          <div class="row-fluid">
-            <input type="text" name="subject" class="span12" placeholder="Subject">
-          </div>
-          <div class="row-fluid">
-            <textarea name="message" class="span12" rows="5" placeholder="Tell us your story..."></textarea>  
-          </div>
-          <div class="row-fluid">
-            <ul class="emotions span3">
-              <li><a data-emotion=":-(" class="emotion sad tip" title="I'm unhappy"></a></li>
-              <li><a data-emotion=":-|" class="emotion indifferent tip" title="I'm okay"></a></li>
-              <li><a data-emotion=":-)" class="emotion happy tip" title="I'm happy!"></a></li>
-            </ul>
-            <div class="span9">
-              <p class="muted note">How are you feeling?</p>
-            </div>
-          </div>
-        </form>      
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn btn-success"><i class="icon-envelope icon-white"></i> Send it to us!</a>
-      </div>
-    </div>
-
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -192,9 +183,7 @@
 
     <script src="../jquery-bootstrap-feedback.js"></script>
     <script type="text/javascript">
-
-      $("#supportbar").feedback();
-
+      $.feedback();
     </script>
 
   </body>
