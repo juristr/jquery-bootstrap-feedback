@@ -6,6 +6,12 @@
     font-size: 12px;
     border-bottom: 0;
     background: #4C9E46;
+}
+
+.note {
+    padding-top:8px;
+}
+
 /*    -webkit-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
@@ -66,3 +72,65 @@
     top: 0;
     left: 3px;
 }*/
+
+.emotions {
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.emotions li {
+    display: inline;
+    list-style-type: none;
+}
+
+.emotions .emotion {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('./assets/smileys.png');
+    background-repeat: none;
+    cursor: pointer;
+}
+
+.emotions .emotion:hover {
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    -webkit-opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+}
+
+.emotions .emotion.selected {
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+}
+
+.emotions .emotion.sad {
+    background-position: 0 0;
+}
+
+.emotions .emotion.sad:hover,.emotions .emotion.sad.selected {
+    background-position: 0 -32px;
+}
+
+.emotions .emotion.indifferent {
+    background-position: -32px 0;
+}
+
+.emotions .emotion.indifferent:hover,.emotions .emotion.indifferent.selected {
+    background-position: -32px -32px;
+}
+
+.emotions .emotion.happy {
+    background-position: -64px 0;
+}
+
+.emotions .emotion.happy:hover,.emotions .emotion.happy.selected {
+    background-position: -64px -32px;
+}
