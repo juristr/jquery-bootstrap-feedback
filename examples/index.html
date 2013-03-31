@@ -110,7 +110,7 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Suggestions/Issues</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#aboutModal" data-toggle="modal">About</a></li>
               </ul>
             </div>
           </div>
@@ -134,9 +134,19 @@
       </div>
     </div> <!-- /container -->
 
+    <div id="aboutModal" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>About</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please submit us any kind of feedback you like. It is really valuable for use for improving our service.</p>
+      </div>
+    </div>
+
 
     <div id="supportbar">
-        <a href="#feedbackModal" class="btn btn-success" data-toggle="modal"><i class="icon-envelope icon-white"></i> Get in Touch</a>      
+        <a href="#feedbackModal" class="btn btn-success btn-feedback" data-toggle="modal"><i class="icon-comment icon-white"></i> Get in Touch</a>      
     </div>
 
     <div id="feedbackModal" class="modal hide fade">
@@ -170,7 +180,7 @@
         </form>      
       </div>
       <div class="modal-footer">
-        <a href="#" class="btn btn-success">Send it to us!</a>
+        <a href="#" class="btn btn-success"><i class="icon-envelope icon-white"></i> Send it to us!</a>
       </div>
     </div>
 
