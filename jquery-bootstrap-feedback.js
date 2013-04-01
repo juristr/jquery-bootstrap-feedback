@@ -14,17 +14,17 @@
             <h3>Get In Touch</h3> \
           </div> \
           <div class="modal-body"> \
-            <p>Please submit us any kind of feedback you like. It is really valuable for use for improving our service.</p>\
-            <form action="/email/support" method="post"> \
+            <p>Please submit us any kind of feedback you like. It is really valuable for us to improve our service.</p>\
+            <form id="feedbackForm"> \
               <div class="row-fluid"> \
                 <input type="text" name="name" class="span6" placeholder="Your name"> \
                 <input type="text" name="email" class="span6" placeholder="Your email"> \
               </div> \
               <div class="row-fluid"> \
-                <input type="text" name="subject" class="span12" placeholder="Subject"> \
+                <input type="text" name="subject" class="span12" placeholder="Subject" required> \
               </div> \
               <div class="row-fluid"> \
-                <textarea name="message" class="span12" rows="5" placeholder="Tell us your story..."></textarea> \
+                <textarea name="message" class="span12" rows="5" placeholder="Tell us your story..." required></textarea> \
               </div> \
               <div class="row-fluid"> \
                 <div class="btn-group span3 js-emotion-bar" data-toggle="buttons-radio"> \
@@ -77,6 +77,21 @@
     //hook click event for sending feedback
     $('.js-send-feedback').click(function(){
       //todo send feedback
+      var userFeedback = {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        mood: ''
+      };
+
+      $("#feedbackForm input, #feedbackForm select, #feedbackForm textarea").each(function() {
+        userFeedback[$(this).attr('name')] = $(this).val();
+      });
+
+      userFeedback.mood = $('.js-emotion-bar').find('a.active').data('original-title');
+
+      console.log(userFeedback);
 
       $('#feedbackModal').html(submittedHtml);
     });
