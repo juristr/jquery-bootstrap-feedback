@@ -6,7 +6,7 @@
 
   /*jshint multistr:true */
   var buttonHtml = '<div id="supportbar">\
-          <a href="#feedbackModal" class="btn btn-success btn-feedback js-send-feedback" data-toggle="modal"><i class="icon-comment icon-white"></i> Get in Touch</a>\
+          <a href="#feedbackModal" class="btn btn-success btn-feedback js-open-feedback" data-toggle="modal"><i class="icon-comment icon-white"></i> Get in Touch</a>\
           </div>',
       modalHtml = '<div id="feedbackModal" class="modal hide fade"> \
           <div class="modal-header">\
@@ -27,21 +27,31 @@
                 <textarea name="message" class="span12" rows="5" placeholder="Tell us your story..."></textarea> \
               </div> \
               <div class="row-fluid"> \
-                <ul class="emotions span3"> \
-                  <li><a data-emotion=":-(" class="emotion sad tip" title="I\'m unhappy"></a></li> \
-                  <li><a data-emotion=":-|" class="emotion indifferent tip" title="I\'m okay"></a></li> \
-                  <li><a data-emotion=":-)" class="emotion happy tip" title="I\'m happy!"></a></li> \
-                </ul> \
-                <div class="span9"> \
+                <div class="btn-group span3 js-emotion-bar" data-toggle="buttons-radio"> \
+                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m happy"><i class="icon-emo-happy"></i>&nbsp;</a> \
+                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m ok"><i class="icon-emo-sleep"></i>&nbsp;</a> \
+                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m unhappy"><i class="icon-emo-unhappy"></i>&nbsp;</a> \
+                </div> \
+                <div class="span8"> \
                   <p class="muted note">How are you feeling?</p> \
                 </div> \
               </div> \
             </form> \
           </div> \
           <div class="modal-footer"> \
-            <a href="#" class="btn btn-success"><i class="icon-envelope icon-white"></i> Send it to us!</a> \
+            <a href="#" class="btn btn-success js-send-feedback"><i class="icon-envelope icon-white"></i> Send it to us!</a> \
           </div> \
-        </div>';
+        </div>',
+        submittedHtml = '<div class="modal-header">\
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> \
+            <h3>Thanks!</h3> \
+          </div> \
+          <div class="modal-body"> \
+            <p>Thanks for your feedback. It is really valuable to us and we\'ll try to do our best to incorporate it.</p>\
+          </div> \
+          <div class="modal-footer"> \
+            <a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a> \
+          </div>';
 
   $.feedback = function(){
     init();
@@ -60,11 +70,21 @@
       .find('#feedbackModal')
       .remove();
     $('body').append(modalHtml);
+
+    //hook tooltips
+    $('.js-emotion-bar').children('a').tooltip();
+
+    //hook click event for sending feedback
+    $('.js-send-feedback').click(function(){
+      //todo send feedback
+
+      $('#feedbackModal').html(submittedHtml);
+    });
   };
 
   var addButton = function(element){
     $(element).append(buttonHtml);
-    $(".js-send-feedback").click(onSendFeedbackClick);
+    $('.js-open-feedback').click(onSendFeedbackClick);
   };
 
   $.fn.feedback.defaults = {

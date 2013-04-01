@@ -94,7 +94,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+
     <link rel="stylesheet" href="../jquery-bootstrap-feedback.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../jquery-bootstrap-feedback-ie7.css">
+    <![endif]-->
   </head>
 
   <body>
@@ -110,7 +115,6 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Suggestions/Issues</a></li>
-                <li><a href="#aboutModal" data-toggle="modal">About</a></li>
               </ul>
             </div>
           </div>
@@ -119,16 +123,36 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>User Feedback!</h1>
+        <h1>User Feedback...</h1>
         <p class="lead">
-          User feedback is of enormous importance.<br/>
-          This plugin aims at making it easy to integrate a nice-looking user feedback form onto your page.
+          ...is of enormous importance!<br/>
+          This plugin aims at making it extremely easy to integrate a nice-looking user feedback form onto your page.
         </p>
-        <a class="btn btn-large btn-success" href="#">Get started</a>
+        <a class="btn btn-large btn-success js-getstarted" href="#">Get started</a>
       </div>
 
       <div class="row-fluid">
         <div class="span8 offset2">
+          <h2>How it works</h2>
+          <p>
+            The main goal is to keep it as simple as possible. Just link the required CSS and JavaScript file and initialize it in one line.
+          </p>
+          <p>
+            This will automatically use the default configuration and add a feedback button to the lower-left corner of your site.
+          </p>
+          <figure>
+            <img src="feedbackbutton.png" />
+          </figure>
+          <p>
+            By clicking the button, a modal dialog will be presented to the user, allowing him to specify his feedback.
+          </p>
+          <figure>
+            <img src="feedbackdialog.png" />
+          </figure>
+          <p>
+            For a <b>demo</b>, just click the feedback button on this page here.
+          </p>
+
           <h2>Installation</h2>
           <p>
             Reference the stylesheet and JavaScript file.
@@ -150,36 +174,43 @@
             The simplest way to use the plugin is to simply invoke
           </p>
           <pre>
-            $.feedback();
+$.feedback();
           </pre>
           <p>
             This hooks it up with its default configuration, adding a button at the lower-right corner of the page and displaying the default text.
           </p>
+
+          <h2>References</h2>
+          <p>
+            Some resources that were helpful for creating this plugin.
+          </p>
+          <ul>
+            <li><a href="https://github.com/fontello/fontelico.font">Fontelico</a></li>
+          </ul>
         </div>
       </div>
 
       <hr>
 
       <div class="footer">
-        <p>&copy; <a href="http://juristr.com">juristr.com</a> 2013</p>
+        <p style="text-align:center">&copy; <a href="http://juristr.com">juristr.com</a> 2013</p>
       </div>
     </div> <!-- /container -->
-
-    <div id="aboutModal" class="modal hide fade">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>About</h3>
-      </div>
-      <div class="modal-body">
-        <p>Please submit us any kind of feedback you like. It is really valuable for use for improving our service.</p>
-      </div>
-    </div>
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+      //just for this demo page here
+      $(function(){
+        $('.js-getstarted').click(function(){
+          $("html, body").animate({ scrollTop: $("h2").first().offset().top }, "slow");
+        });
+      })
+    </script>
 
     <script src="../jquery-bootstrap-feedback.js"></script>
     <script type="text/javascript">
