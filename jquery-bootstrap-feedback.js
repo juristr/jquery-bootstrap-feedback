@@ -28,9 +28,9 @@
               </div> \
               <div class="row-fluid"> \
                 <div class="btn-group span3 js-emotion-bar" data-toggle="buttons-radio"> \
-                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m happy"><i class="icon-emo-happy"></i>&nbsp;</a> \
-                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m ok"><i class="icon-emo-sleep"></i>&nbsp;</a> \
-                  <a href="#" class="btn" data-toggle="tooltip" title="I\'m unhappy"><i class="icon-emo-unhappy"></i>&nbsp;</a> \
+                  <a href="javascript:;" class="btn" data-toggle="tooltip" title="I\'m happy"><i class="icon-emo-happy"></i>&nbsp;</a> \
+                  <a href="javascript:;" class="btn" data-toggle="tooltip" title="I\'m ok"><i class="icon-emo-sleep"></i>&nbsp;</a> \
+                  <a href="javascript:;" class="btn" data-toggle="tooltip" title="I\'m unhappy"><i class="icon-emo-unhappy"></i>&nbsp;</a> \
                 </div> \
                 <div class="span8"> \
                   <p class="muted note">How are you feeling?</p> \
@@ -51,7 +51,9 @@
           </div> \
           <div class="modal-footer"> \
             <a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a> \
-          </div>';
+          </div>',
+      opts,
+      self = this;
 
   $.feedback = function(options){
     init(options);
@@ -62,6 +64,7 @@
   };
 
   var init = function(options){
+    opts = $.extend({}, $.feedback.defaults, options);
     addButton($('body'));
   };
 
@@ -91,27 +94,23 @@
 
       userFeedback.mood = $('.js-emotion-bar').find('a.active').data('original-title');
 
-      console.log(userFeedback);
-
-      var sendFeedback = sendFeedbackToBackend(userFeedback);
-      sendFeedback.always(function(){
+      var sendFeedback = opts.sendFeedback(userFeedback);
+      if(sendFeedback){
+        sendFeedback.always(function(){
+          $('#feedbackModal').html(submittedHtml);
+        });
+      }else{
         $('#feedbackModal').html(submittedHtml);
-      });
+      }
 
     });
   };
 
   var sendFeedbackToBackend = function(userFeedback) {
     return $.ajax({
-      url: '/feedback',
+      url: opts.feedbackUrl,
       type: 'POST',
-      data: userFeedback,
-      success: function(){
-
-      },
-      error: function(){
-        //ignore..this is not a mission critical function; at most we could print a log here
-      }
+      data: userFeedback
     });
   };
 
@@ -120,9 +119,9 @@
     $('.js-open-feedback').click(onSendFeedbackClick);
   };
 
-  $.fn.feedback.defaults = {
-    foreground: 'red',
-    background: 'yellow'
+  $.feedback.defaults = {
+    feedbackUrl: '/feedback',
+    sendFeedback: sendFeedbackToBackend
   };
 
 
