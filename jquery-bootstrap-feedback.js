@@ -53,15 +53,15 @@
             <a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a> \
           </div>';
 
-  $.feedback = function(){
-    init();
+  $.feedback = function(options){
+    init(options);
   };
 
   $.fn.feedback = function(options){
     var opts = $.extend({}, $.fn.feedback.defaults, options);
   };
 
-  var init = function(){
+  var init = function(options){
     addButton($('body'));
   };
 
@@ -93,7 +93,25 @@
 
       console.log(userFeedback);
 
-      $('#feedbackModal').html(submittedHtml);
+      var sendFeedback = sendFeedbackToBackend(userFeedback);
+      sendFeedback.always(function(){
+        $('#feedbackModal').html(submittedHtml);
+      });
+
+    });
+  };
+
+  var sendFeedbackToBackend = function(userFeedback) {
+    return $.ajax({
+      url: '/feedback',
+      type: 'POST',
+      data: userFeedback,
+      success: function(){
+
+      },
+      error: function(){
+        //ignore..this is not a mission critical function; at most we could print a log here
+      }
     });
   };
 
